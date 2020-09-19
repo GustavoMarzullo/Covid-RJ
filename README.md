@@ -2,4 +2,4 @@ Baixa os dados de covid direto de http://painel.saude.rj.gov.br e salva os gráf
 
 Para rodar o código, acessa pasta onde está o arquivo .py e digite "python covid_rj". Talvez precise digitar "python3 covid_rj". 
 
-Precisa-se ter intalado as bibliotecas numpy,pandas e matplotlib.
+Precisa-se ter intalado as bibliotecas numpy, pandas e matplotlib.
