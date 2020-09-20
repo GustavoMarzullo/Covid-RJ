@@ -30,7 +30,6 @@ tempo=round(t1-t0,1)
 print('\nDados baixados!')
 print('Tempo: '+str(tempo)+'s')
 
-
 df=df.sort_values('dt_sintoma') #botando os dados em ordem
 
 #fazendo os casos totais e casos diários
