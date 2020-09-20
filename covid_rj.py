@@ -6,9 +6,11 @@ from datetime import datetime
 import time
 plt.rcParams['figure.figsize'] = (13, 7) #deixando os gráficos mais compridos
 
+print('Programa para fazer gráfico dos casos de covid no estado do Rio de Janeiro')
+
 #interagindo com o usuário
 while True:
-	salvar=input('Deseja salvar os gráficos? [S/N] ')
+	salvar=input('\nDeseja salvar os gráficos? [S/N] ')
 	if salvar!= 'S' and salvar!='N' and salvar!='s' and salvar!='n':
 		print('Digite S ou N.')
 	else:
@@ -19,7 +21,7 @@ while True:
 		break
 
 #baixando os dados
-print('Baixando os dados...')
+print('Baixando os dados de http://painel.saude.rj.gov.br...')
 t0=time.time()
 df=pd.read_csv("http://painel.saude.rj.gov.br/arquivos/COVID.CSV",sep=';',\
                encoding='latin1', parse_dates=['dt_sintoma'], dayfirst=True, index_col='dt_sintoma',low_memory=False)
@@ -64,10 +66,10 @@ plt.ylabel('Casos Diários')
 if salvar:
 	plt.savefig('Casos Diários Rio de Janeiro '+ str(hoje),dpi=300)
 	plt.close()
-	print('\nGráficos salvos.')
+	print('\nGráficos salvos na pasta atual.')
 else:
 	plt.show()
 
+print('\nFeito por: Gustavo M. Marzullo de Britto')
 
-
-
+a=input('Aperte ENTER para sair.')
