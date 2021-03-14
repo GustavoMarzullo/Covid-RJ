@@ -4,7 +4,6 @@ import matplotlib.pyplot as plt
 import numpy as np
 from datetime import datetime
 import time
-from scipy.signal import savgol_filter
 plt.rcParams['figure.figsize'] = (13, 7) #deixando os gráficos mais compridos
 
 print('Programa para fazer gráfico dos casos de covid no estado do Rio de Janeiro')
@@ -33,6 +32,7 @@ print('Tempo: '+str(tempo)+'s')
 
 df=df.sort_values('dt_sintoma') #botando os dados em ordem
 
+
 #fazendo os casos totais e casos diários
 tot=0
 casos_acumulados=[]
@@ -44,12 +44,13 @@ for i in range(len(df)):
     
 df['casos_acumulados']=casos_acumulados
 df['casos']=casos
+df2=df.groupby(['dt_sintoma']).sum()
+data=df2.index[-1]
 
-
-hoje=datetime.today().strftime('%d-%m-%Y')
+hoje=data.strftime('%d-%m-%Y')
 #plotando os casos acumulados
 df['casos_acumulados'].plot(color='black')
-plt.title('Casos Acumulados - RJ '+ str(datetime.today().strftime('%d-%m-%Y')))
+plt.title('Casos Acumulados - RJ '+ str(data.strftime('%d-%m-%Y')))
 plt.xlabel('Data')
 plt.ylabel('Casos Acumulados')
 if salvar:
@@ -59,10 +60,9 @@ else:
 	plt.show()
 
 #plotando os casos diários
-df2=df.groupby(['dt_sintoma']).sum()
 df2['casos']=df2.rolling(7,min_periods=1).mean()
 df2['casos'].plot(color='black')
-plt.title('Casos Diários - RJ (média móvel de 7 dias)'+ str(datetime.today().strftime('%d-%m-%Y')))
+plt.title('Casos Diários - RJ (média móvel de 7 dias) '+ str(data.strftime('%d-%m-%Y')))
 plt.xlabel('Data')
 plt.ylabel('Casos Diários')
 if salvar:
